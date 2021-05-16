@@ -1,0 +1,114 @@
+<!-- This is a static file -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Perquackey</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <section id="sidebar">
+          <div class="side_section">
+            <h1 class="title">
+              Perquackey
+            </h1>
+            <h2 class="subtitle">
+              Bonus Letters? <input type="checkbox" id="bonus_on" />
+            </h2>
+          </div>
+
+          
+          <div class="side_section">
+            <button
+              id="roll_btn"
+              class="button is-success is-fullwidth"
+            >
+              ROLL
+            </button>
+
+            <div class="columns is-mobile">
+              <div class="column">
+                <button id="shuffle_btn" class="button is-warning is-fullwidth is-small">
+                  Shuffle
+                </button>
+              </div>
+              <div class="column">
+                <button id="reset_btn" class="button is-warning is-fullwidth is-small">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+      
+      
+      
+                  
+          <div class="side_section counter_container">
+            <button class="button is-small" onclick="counter_restart()">Re/Start</button>
+            <button class="button is-small" id="btn_pause" onclick="counter_pause()">Pause</button>
+            <span id="counter">0</span>
+          </div>
+      
+      
+          <div class="side_section">
+            <table class="table has-text-centered is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Carolyn<br/><span id="p1_total">0</span></th>
+                  <th colspan="2"><button id="btn_add_round" class="button is-small is-success" onclick="add_round()">+</button></th>
+                  <th>Heather<br/><span id="p2_total">0</span></th>
+                </tr>
+              </thead>
+              <tbody id="rounds">
+                <tr data-id="0">
+                  <td colspan="2"><input id="p1" type="number" class="score"/></td>
+                  <td colspan="2"><input id="p2" type="number"  class="score"/></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+
+    </section>
+
+    <div id="dice_container">
+      <div class="dice d0 animate__animated" data-sort="0">-</div>
+      <div class="dice d1 animate__animated" data-sort="1">-</div>
+      <div class="dice d2 animate__animated" data-sort="2">-</div>
+      <div class="dice d3 animate__animated" data-sort="3">-</div>
+      <div class="dice d4 animate__animated" data-sort="4">-</div>
+      <div class="dice d5 animate__animated" data-sort="5">-</div>
+      <div class="dice d6 animate__animated" data-sort="6">-</div>
+      <div class="dice d7 animate__animated" data-sort="7">-</div>
+      <div class="dice d8 animate__animated" data-sort="8">-</div>
+      <div class="dice d9 animate__animated" data-sort="9">-</div>
+      <div class="dice d10 bonus animate__animated" data-sort="10">-</div>
+      <div class="dice d11 bonus animate__animated" data-sort="11">-</div>
+      <div class="dice d12 bonus animate__animated" data-sort="12">-</div>
+    </div>
+  </body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+  />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-touch-events/1.0.5/jquery.mobile-events.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <script src="/collision_check.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script src="colyseus.js"></script>
+</html>
