@@ -26,7 +26,7 @@ const gameServer = new colyseus.Server({
 });
 
 gameServer
-    .define('mygame', gameRoom.myGameRoom, { maxPlayers: 8 })
+    .define('mygame', gameRoom.myGameRoom, { maxPlayers: 2 })
     .filterBy(['session'])
 
 
