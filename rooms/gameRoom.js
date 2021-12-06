@@ -52,7 +52,7 @@ exports.myGameRoom = class extends colyseus.Room {
         //init counter
         this.delayedInterval = this.clock.setInterval(() => {
             this.state.counter += 1;
-            console.log("tick", this.state.counter);
+            // console.log("tick", this.state.counter);
         }, 1000);
         this.delayedInterval.pause();
       
