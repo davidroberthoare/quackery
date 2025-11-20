@@ -2,12 +2,12 @@ const dice_size = $(".dice").first().width();
 const container_width = $("#dice_container").width();
 const container_height = $("#dice_container").height();
 
-const endpoint = `${window.location.protocol.replace("http", "ws")}//${
-  window.location.hostname
-}`;
+// const endpoint = `${window.location.protocol.replace("http", "wss")}//${window.location.hostname}`;
+const endpoint = "wss://" + window.location.hostname;
 var client = new Colyseus.Client(endpoint);
 var url = new URL(window.location.href);
 var sessionid = url.searchParams.get("session");
+// console.log("SESSIONID", sessionid)
 var room;
 var CURRENT_ROLL = [];
 
@@ -41,21 +41,19 @@ client
     };
     
   
-  room.state.listen("is_playing", (currentValue, previousValue) => {
-      console.log(`is_playing is now ${currentValue} (previous value was: ${previousValue})`);
-      if(currentValue===true){
-        $("#btn_pause").text("Pause");
-      }else{
-        $("#btn_pause").text("Resume");
-      }
-  });
-  
-  room.state.listen("counter", (currentValue, previousValue) => {
-      // console.log(`counter is now ${currentValue} (previous value was: ${previousValue})`);
-      $("#counter").text(currentValue);
-  });
-  
-
+    room.state.listen("is_playing", (currentValue, previousValue) => {
+        console.log(`is_playing is now ${currentValue} (previous value was: ${previousValue})`);
+        if(currentValue===true){
+          $("#btn_pause").text("Pause");
+        }else{
+          $("#btn_pause").text("Resume");
+        }
+    });
+    
+    room.state.listen("counter", (currentValue, previousValue) => {
+        // console.log(`counter is now ${currentValue} (previous value was: ${previousValue})`);
+        $("#counter").text(currentValue);
+    });
   
       
   })

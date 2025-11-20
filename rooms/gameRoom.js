@@ -46,7 +46,9 @@ var startTime = 0;
 exports.myGameRoom = class extends colyseus.Room {
     // When room is initialized
     onCreate (options) { 
+      try{
         console.log("creating StarterRoom", options, DICE, CURRENT_ROLL);
+
         this.setState(new MyState())
         
         //init counter
@@ -76,38 +78,44 @@ exports.myGameRoom = class extends colyseus.Room {
           
         });
         
-      this.onMessage("score_update", (client, message) => {
-          console.log("got message of type, 'score_update'", message);
-          // if(message.round && message.player && message.score){
-            this.state.rounds[message.round]["p" + message.player] = parseInt(message.score);
-            console.log("updated rounds state:", this.state.rounds);
-          // }else{
-            // console.log("something missing with round update");
-          // }
-      });
-      
-      this.onMessage("add_round", (client, message) => {
-          console.log("got message of type, 'add_round'");
-          var round = new Round;
-          round.p1=0;
-          round.p2=0;
-          this.state.rounds.push(round);
-          console.log("new state of ROUNDS:", this.state.rounds);
-      });
-      
-      
-      this.onMessage("counter_start", (client, message) => {
-        this.counterRestart();
-      });
-      this.onMessage("counter_pause", (client, message) => {
-        this.state.is_playing = false;
-        this.delayedInterval.pause();
-      });
-      this.onMessage("counter_resume", (client, message) => {
-        this.delayedInterval.resume();
-        this.state.is_playing = true;
-      });
-      
+        this.onMessage("score_update", (client, message) => {
+            console.log("got message of type, 'score_update'", message);
+            // if(message.round && message.player && message.score){
+              this.state.rounds[message.round]["p" + message.player] = parseInt(message.score);
+              console.log("updated rounds state:", this.state.rounds);
+            // }else{
+              // console.log("something missing with round update");
+            // }
+        });
+        
+        this.onMessage("add_round", (client, message) => {
+            console.log("got message of type, 'add_round'");
+            var round = new Round;
+            round.p1=0;
+            round.p2=0;
+            this.state.rounds.push(round);
+            console.log("new state of ROUNDS:", this.state.rounds);
+        });
+        
+        
+        this.onMessage("counter_start", (client, message) => {
+          this.counterRestart();
+        });
+        this.onMessage("counter_pause", (client, message) => {
+          this.state.is_playing = false;
+          this.delayedInterval.pause();
+        });
+        this.onMessage("counter_resume", (client, message) => {
+          this.delayedInterval.resume();
+          this.state.is_playing = true;
+        });
+        
+        console.log("end of CREATE")
+
+      } catch (err) {
+        console.log('init error', err)
+        return false
+      }
         
     }
   

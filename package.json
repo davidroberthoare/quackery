@@ -11,12 +11,6 @@
     "colyseus": "^0.14.2",
     "@colyseus/schema": "1.0.6"
   },
-  "engines": {
-    "node": "12.x"
-  },
-  "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
-  },
   "license": "MIT",
   "keywords": [
     "node",

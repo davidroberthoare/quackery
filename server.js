@@ -26,11 +26,13 @@ const gameServer = new colyseus.Server({
 });
 
 gameServer
-    .define('mygame', gameRoom.myGameRoom, { maxPlayers: 2 })
+    .define('mygame', gameRoom.myGameRoom, { 
+        maxPlayers: 2 
+    })
     .filterBy(['session'])
 
 
-process.env.PORT = "3100"
+process.env.PORT = "3111"
 gameServer.listen(process.env.PORT);
 console.log('Listening on port:' + process.env.PORT);
 
